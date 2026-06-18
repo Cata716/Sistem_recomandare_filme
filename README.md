@@ -29,17 +29,13 @@ Sistem de recomandare bazat pe embeddings semantice fine-tuned, capabil să găs
 
 ### 1. Instalare dependențe
 
-```bash
 pip install -r requirements.txt
-```
 
-```
 streamlit>=1.30.0
 numpy>=1.24.0
 pandas>=2.0.0
 sentence-transformers>=2.7.0
 scikit-learn>=1.3.0
-```
 
 ### 2. Descărcare fișiere model
 
@@ -52,9 +48,7 @@ Plasează-le în același director cu `app.py`.
 
 ### 3. Pornire
 
-```bash
 streamlit run app.py
-```
 
 Aplicația rulează local la `http://localhost:8501`.
 
