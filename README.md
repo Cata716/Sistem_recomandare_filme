@@ -24,7 +24,6 @@ Sistem de recomandare bazat pe embeddings semantice fine-tuned, capabil să găs
 
 **`app.py`** este aplicația Streamlit care permite căutarea filmelor prin descriere în limbaj natural. Încarcă modelul fine-tuned și embeddings-urile pre-calculate, apoi returnează cele mai similare filme pe baza similarității cosinus.
 
----
 
 ## Rulare aplicație
 
