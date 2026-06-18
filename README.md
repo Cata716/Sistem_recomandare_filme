@@ -25,30 +25,25 @@ Sistem de recomandare bazat pe embeddings semantice fine-tuned, capabil să găs
 **`app.py`** este aplicația Streamlit care permite căutarea filmelor prin descriere în limbaj natural. Încarcă modelul fine-tuned și embeddings-urile pre-calculate, apoi returnează cele mai similare filme pe baza similarității cosinus.
 
 
-## Rulare aplicație
+## Cum rulezi aplicația
 
-### 1. Instalare dependențe
+Instalează dependențele:
 
-pip install -r requirements.txt
+```bash
+pip install streamlit numpy pandas sentence-transformers scikit-learn
+```
 
-streamlit>=1.30.0
-numpy>=1.24.0
-pandas>=2.0.0
-sentence-transformers>=2.7.0
-scikit-learn>=1.3.0
+Din output-ul notebook-ului `notebook-varianta6` descarcă cele trei fișiere necesare și pune-le în același director cu `app.py`:
 
-### 2. Descărcare fișiere model
+- `sbert_v6b/` - modelul fine-tuned
+- `movies_final_v6.csv` - datele filmelor
+- `doc_embeddings_v6.npy` - embeddings pre-calculate
 
-Din output-ul notebook-ului `notebook-varianta6` descarcă:
-- `sbert_v6b/` — directorul cu modelul fine-tuned
-- `movies_final_v6.csv` — datele filmelor
-- `doc_embeddings_v6.npy` — embeddings pre-calculate
+Pornește aplicația:
 
-Plasează-le în același director cu `app.py`.
-
-### 3. Pornire
-
+```bash
 streamlit run app.py
+```
 
 Aplicația rulează local la `http://localhost:8501`.
 
