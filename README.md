@@ -2,7 +2,6 @@
 
 Sistem de recomandare bazat pe embeddings semantice fine-tuned, capabil să găsească filme relevante pornind de la o descriere în limbaj natural, fără a depinde de istoricul de interacțiuni al utilizatorilor.
 
----
 
 ## Conținut repository
 
@@ -28,7 +27,6 @@ Notebookurile urmăresc evoluția sistemului de la un baseline simplu până la 
 
 **`app.py`** este aplicația Streamlit. Scrii o descriere în engleză, ea încarcă modelul și embeddings-urile pre-calculate și îți returnează filmele cele mai similare.
 
----
 
 ## Cum rulezi aplicația
 
