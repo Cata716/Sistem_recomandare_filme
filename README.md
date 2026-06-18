@@ -2,28 +2,33 @@
 
 Sistem de recomandare bazat pe embeddings semantice fine-tuned, capabil să găsească filme relevante pornind de la o descriere în limbaj natural, fără a depinde de istoricul de interacțiuni al utilizatorilor.
 
+---
+
 ## Conținut repository
 
-**`notebook-compare-summaries.ipynb`** compară calitatea rezumatelor produse de patru modele diferite: BART, DistilBART, PEGASUS și T5. Scopul este alegerea celui mai potrivit model de sumarizare pentru construirea documentului semantic.
+Notebookurile urmăresc evoluția sistemului de la un baseline simplu până la modelul final, fiecare variantă adăugând sau modificând ceva față de precedenta.
 
-**`bart_summarization+v1.ipynb`** folosește modelul BART pentru a genera automat rezumate ale descrierilor și recenziilor filmelor. Constituie varianta baseline (V1) a sistemului: nu include fine-tuning, iar scorul final combină similaritatea semantică cu ponderi calculate pe baza popularității și a scorului de recenzii.
+**`notebook-compare-summaries.ipynb`** a fost punctul de plecare: am comparat șase tehnici de sumarizare (BART, DistilBART, PEGASUS-XSum, PEGASUS-CNN/DM, T5 și o metodă bazată pe extracția primelor două propoziții din descriere) pentru a vedea care produce rezumate mai utile pentru reprezentarea semantică a unui film.
 
-**`notebook-varianta2.ipynb`** aplică fine-tuning pe modelul all-mpnet-base-v2 folosind MultipleNegativesRankingLoss. Este primul experiment de antrenare a unui model de embeddings pe datele din proiect.
+**`bart_summarization+v1.ipynb`** este varianta baseline. Encodarea se face cu modelul all-MiniLM-L6-v2, fără fine-tuning, iar BART este folosit pentru a sumariza descrierile și recenziile. Scorul final combina similaritatea semantică cu ponderi bazate pe popularitate și scorul recenziilor.
 
-**`notebook-varianta3.ipynb`** extinde documentul semantic prin adăugarea rezumatelor de recenzii ale criticilor, pe lângă descrierea filmului. Modelul de bază rămâne all-mpnet-base-v2.
+**`notebook-varianta2.ipynb`** introduce primul fine-tuning, pe modelul all-mpnet-base-v2, folosind MultipleNegativesRankingLoss.
 
-**`notebook-varianta4.ipynb`** face trecerea la modelul BGE (bge-base-en-v1.5) și introduce Hard Negative Mining cross-gen, în care negativele sunt filme din genuri diferite față de interogare.
+**`notebook-varianta3.ipynb`** extinde documentul semantic cu rezumatele recenziilor criticilor, pe lângă descrierea filmului.
 
-**`notebook-varianta5.ipynb`** rafinează strategia de negative mining prin selecția negativelor din același gen, folosind un cross-encoder pentru a identifica filmele cel mai greu de distins de filmul țintă.
+**`notebook-varianta4.ipynb`** trece la BGE (bge-base-en-v1.5) și adaugă Hard Negative Mining cross-gen, în care negativele sunt filme din genuri diferite față de cel țintă.
 
-**`notebook-varianta6.ipynb`** reprezintă modelul final. Documentul semantic combină rezumatul BART, opinia criticilor, genurile, cuvintele cheie și distribuția filmului. Antrenarea folosește Mixed Hard Negative Mining, cu negative atât din același gen, cât și din genuri diferite. Atinge Hit@10 = 44.3% pe un pool de 40.197 de filme.
+**`notebook-varianta5.ipynb`** adaugă cuvintele cheie în documentul semantic și explorează Hard Negative Mining same-genre, în care negativele sunt selectate din filme din același gen cu ajutorul unui cross-encoder.
 
-**`notebook-varianta6-cu-validare.ipynb`** reia antrenarea modelului final cu o împărțire formală 80/10/10 și early stopping, pentru a documenta performanța pe seturi separate de validare și test.
+**`notebook-varianta6.ipynb`** este modelul final. Documentul semantic include rezumatul BART, opinia criticilor, genurile, cuvintele cheie și distribuția. Antrenarea combină negative din același gen și din genuri diferite (Mixed Hard Negative Mining). Rezultatul final este Hit@10 = 44.3% pe un pool de 40.197 de filme.
 
-**`notebook-varianta7.ipynb`** testează o variantă alternativă în care în locul rezumatului BART se folosește overview-ul brut al filmului, trunchiat la lungimea maximă a modelului.
+**`notebook-varianta6-cu-validare.ipynb`** reia antrenarea modelului final cu o împărțire formală 80/10/10 și early stopping, pentru a documenta mai riguros performanța pe seturi separate de validare și test.
 
-**`app.py`** este aplicația Streamlit care permite căutarea filmelor prin descriere în limbaj natural. Încarcă modelul fine-tuned și embeddings-urile pre-calculate, apoi returnează cele mai similare filme pe baza similarității cosinus.
+**`notebook-varianta7.ipynb`** testează o alternativă în care în loc de rezumatul BART se folosesc primele două propoziții ale descrierii, extrase automat fără sumarizare.
 
+**`app.py`** este aplicația Streamlit. Scrii o descriere în engleză, ea încarcă modelul și embeddings-urile pre-calculate și îți returnează filmele cele mai similare.
+
+---
 
 ## Cum rulezi aplicația
 
@@ -46,4 +51,5 @@ streamlit run app.py
 ```
 
 Aplicația rulează local la `http://localhost:8501`.
+
 
