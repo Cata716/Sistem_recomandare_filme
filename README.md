@@ -2,8 +2,6 @@
 
 Sistem de recomandare bazat pe embeddings semantice fine-tuned, capabil să găsească filme relevante pornind de la o descriere în limbaj natural, fără a depinde de istoricul de interacțiuni al utilizatorilor.
 
----
-
 ## Conținut repository
 
 **`notebook-compare-summaries.ipynb`** compară calitatea rezumatelor produse de patru modele diferite: BART, DistilBART, PEGASUS și T5. Scopul este alegerea celui mai potrivit model de sumarizare pentru construirea documentului semantic.
