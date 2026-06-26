@@ -32,13 +32,15 @@ Notebookurile urmăresc evoluția sistemului de la un baseline simplu până la 
 
 Instalează dependențele:
 
+Ai nevoie de Python 3.10 sau 3.11. Versiunile mai noi pot fi incompatibile cu pachetele folosite.
+
 ```bash
-pip install streamlit numpy pandas sentence-transformers scikit-learn
+pip install streamlit numpy pandas scikit-learn sentence-transformers==5.4.0
 ```
 
 Din output-ul notebook-ului `notebook-varianta6` descarcă cele trei fișiere necesare și pune-le în același director cu `app.py`:
 
-- `sbert_v6b/` - modelul fine-tuned
+- `sbert_v6b/` - modelul fine-tuned (folder)
 - `movies_final_v6.csv` - datele filmelor
 - `doc_embeddings_v6.npy` - embeddings pre-calculate
 
