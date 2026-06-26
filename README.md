@@ -35,12 +35,13 @@ Instalează dependențele:
 ```bash
 pip install streamlit numpy pandas scikit-learn sentence-transformers
 ```
+Aplicația are nevoie de trei fișiere care nu sunt incluse în repository. Descarcă-le de aici: https://drive.google.com/drive/folders/1Ra2K3VHVEWVdIt8jlY4lTyC09ioDpAmx
 
-Din output-ul notebook-ului `notebook-varianta6` descarcă cele trei fișiere necesare și pune-le în același director cu `app.py`:
-
-- `sbert_v6b/` - modelul fine-tuned (folder)
+- `sbert_v6b.zip` - modelul fine-tuned (trebuie dezarhivat după descărcare)
 - `movies_final_v6.csv` - datele filmelor
 - `doc_embeddings_v6.npy` - embeddings pre-calculate
+
+Pune-le în același director cu `app.py`.
 
 Pornește aplicația:
 
